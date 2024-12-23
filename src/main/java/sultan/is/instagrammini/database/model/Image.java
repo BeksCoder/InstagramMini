@@ -1,8 +1,6 @@
 package sultan.is.instagrammini.database.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.NamedEntityGraph;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import sultan.is.instagrammini.database.common.BaseEntity;
 @Entity
@@ -12,6 +10,14 @@ import sultan.is.instagrammini.database.common.BaseEntity;
 @Builder
 @Setter
 @Getter
+@SequenceGenerator(name = "base_id_gen", sequenceName = "image_seq", allocationSize = 1)
+
 public class Image extends BaseEntity {
     private String imageUrl;
+
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
+
 }

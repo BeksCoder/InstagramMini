@@ -1,18 +1,29 @@
 package sultan.is.instagrammini.database.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import sultan.is.instagrammini.database.common.BaseEntity;
 
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table(name = "comments")
 @NoArgsConstructor
 @AllArgsConstructor
+@SequenceGenerator(name = "base_id_gen", sequenceName = "coomment_seq", allocationSize = 1)
 public class Comment extends BaseEntity {
     private String comment;
     private LocalDateTime createdAt;
+
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 }
