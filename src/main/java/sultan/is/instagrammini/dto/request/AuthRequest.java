@@ -1,6 +1,6 @@
 package sultan.is.instagrammini.dto.request;
 
-public record SignInRequest(
+public record AuthRequest(
          String usernameOrEmail,
          String password
 ) {

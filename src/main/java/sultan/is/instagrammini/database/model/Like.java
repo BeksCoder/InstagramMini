@@ -13,8 +13,6 @@ import sultan.is.instagrammini.database.common.BaseEntity;
 @SequenceGenerator(name = "base_id_gen", sequenceName = "like_seq", allocationSize = 1)
 
 public class Like extends BaseEntity {
-    private boolean IsLike;
-
 
     @ManyToOne
     @JoinColumn(name = "post_id")
