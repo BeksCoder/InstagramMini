@@ -19,6 +19,6 @@ public class PostResponse {
     private LocalDateTime createdAt;
     private boolean commentsEnabled;
     private boolean archived;
-    private List<CommentResponseDTO> comments;
     private List<ImageResponseDTO> images;
+    private List<CommentResponseDTO>commentResponseDTOS;
 }

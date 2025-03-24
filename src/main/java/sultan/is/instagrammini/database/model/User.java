@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @SequenceGenerator(name = "base_id_gen", sequenceName = "user_seq", allocationSize = 1)
-
 public class User extends BaseEntity {
     private String username;
     private String password;
@@ -22,11 +21,11 @@ public class User extends BaseEntity {
     private String phoneNumber;
 
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserInfo userInfo;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Follower follower;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Follower> followers;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Post> posts;

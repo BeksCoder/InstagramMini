@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class CommentRequestDTO {
     private String text;
     private Long userId;
+    private Long postId;
 
 }

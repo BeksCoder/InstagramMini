@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import sultan.is.instagrammini.database.common.BaseEntity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,11 +30,11 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Comment> comments;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY,orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Image> images;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY,orphanRemoval = true)
+    private List<Image> image = new ArrayList<>();
 
     private String location;
 
@@ -41,7 +42,7 @@ public class Post extends BaseEntity {
     private PostType postType;
 
     private boolean commentsEnabled = true;
-
+    @Column(nullable = false)
     private boolean archived = false;
 
     public enum PostType {

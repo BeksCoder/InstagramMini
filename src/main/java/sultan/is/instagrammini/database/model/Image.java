@@ -14,6 +14,7 @@ import sultan.is.instagrammini.database.common.BaseEntity;
 
 public class Image extends BaseEntity {
     private String imageUrl;
+    private String description;
 
 
     @ManyToOne
