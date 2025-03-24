@@ -20,13 +20,13 @@ import java.util.List;
 @SequenceGenerator(name = "base_id_gen", sequenceName = "post_seq", allocationSize = 1)
 
 public class Post extends BaseEntity {
-    private String title;
-    private String description;
+    @Column(columnDefinition = "TEXT")
+    private String caption;
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -35,5 +35,17 @@ public class Post extends BaseEntity {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Image> images;
 
+    private String location;
 
+    @Enumerated(EnumType.STRING)
+    private PostType postType;
+
+    private boolean commentsEnabled = true;
+
+    private boolean archived = false;
+
+    public enum PostType {
+        IMAGE, VIDEO, CAROUSEL
+    }
 }
+
